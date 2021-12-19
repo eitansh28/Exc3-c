@@ -26,23 +26,9 @@ int main(){
     }text[i]=c;
     i++;
   }
-  //scanf("%s",word);
-  //scanf("%s",text);
 
   Gematria (word, text);
-  //Atbash (word, text);
-  //Anagram (word, text,strlen(text));
-  func2(text,word);
-  anagram1 (text,word,strlen(text));
-  // printf("%s\n",word);
-  // printf("%s\n",text);
-  // printf("%ld\n",strlen(word));
-  // printf("%ld\n",strlen(text));
-  // printf("%c\n",text[0]);
-  //printf("%d\n",cgem('z'));
-  //printf("%d\n",wgem(word));
-  //printf("%c",word[7]);
-  //printf("%c\n",catbs('d'));
-  //printf("\n");
+  Atbash (text,word);
+  Anagram (text,word,strlen(text));
   return 0;
 }

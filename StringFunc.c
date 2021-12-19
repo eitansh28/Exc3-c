@@ -76,296 +76,6 @@ char catbs(char c){
   return c;
 }
 
-
-int equal(char* s, char* t, int len){
-  int k=0;
-  for(int i=0;i<len;i++){
-    if(s[i]==' '){
-      k++;
-    }else if(s[i+k]!=t[i]){
-      return 0;
-    }else{
-      continue;
-    }
-  }return 1;
-}
-
-int countS(char* s, char* t){
-  int k=0;
-  int c=0;
-  int i=0;
-  while(i<strlen(t) && c<strlen(s)){
-    if(t[i]==' '){
-      k++;
-    }else{
-      c++;
-    }i++;
-  }return k;
-}
-// int eq(char* p1,char* p2){
-//   int k=0;
-//   for(int i=0;i<strlen(p1);i++){
-//     if(p1[k]==' ')
-//       k++;
-//     if(p2[i]!=p1[k]){
-//       return 0;
-//     }
-//      k++;
-//   }return 1;
-// }
-
-void Atbash(char* word, char* text){
-  printf("\nAtbash Sequences: ");
-  char at[strlen(word)];
-  int first=0;
-  int cSP=0;
-  for(int i=0;i<strlen(word);i++){
-    at[i]=catbs(word[i]);
-  }
-  char op[strlen(word)];
-  for(int i=0;i<strlen(word);i++){
-    op[i]=catbs(word[strlen(word)-1-i]);
-  }
-  for(int i=0;i<strlen(text)-strlen(word);i++){
-    if(equal(text+i,at,strlen(word)) || equal(text+i,op,strlen(word))){
-      cSP=countS(at,text+i);
-      if(first==0){
-        printStr(text+i,text+i+strlen(word)+cSP);
-        first++;
-      }else{
-        printf("~");
-        printStr(text+i,text+i+strlen(word)+cSP);
-      }
-
-    }
-  }
-}
-
- //void Atbash2(char* word, char* text){
-   // for(int j=0; j<strlen(text); j++){
-   //      text1=strncpy(text1,text+j,strlen(text));
-   //      for(int i=0; i<=strlen(text1); i++){
-   //          //setting up substr to be our temp substring for the current run
-   //          char* substr = malloc(256);
-   //          strncpy(substr,text1,i);
-//   printf("\nAtbash Sequences: ");
-//   char at[strlen(word)];
-//   int first=0;
-//   for(int i=0;i<strlen(word);i++){
-//     at[i]=catbs(word[i]);
-//   }
-//   char op[strlen(word)];
-//   for(int i=0;i<strlen(word);i++){
-//     op[i]=catbs(word[strlen(word)-1-i]);
-//   }
-//   int k=0;
-//   int dis=0;
-//   for(int i=0;i<strlen(text)-strlen(word);i++){
-//     while(text[k]==' '){
-//       k++;
-//       dis++;
-//     }
-//     if(at[i]!=text[k]){
-//       break;
-//       // k++;
-//       // continue;
-//     }else{
-//     if(equal(text+i,at,strlen(word)) || equal(text+i,op,strlen(word))){
-//       if(first==0){
-//         printStr(text+i,text+i+strlen(word));
-//         first++;
-//       }else{
-//         printf("~");
-//         printStr(text+i,text+i+strlen(word));
-//       }
-//
-//     }
-//   }
-// }
-int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)b - *(int*)a );
-}
-int comp (int* a,int* b){
-  for(int i=0;i<127;i++){
-    if(a[i]!=b[i])
-    return 0;
-  }return 1;
-}
-
-void Anagram (char* word, char* text){
-  printf("\nAnagram Sequences: ");
-
-  int count[127]={};
-  int c2[127]={};
-  int temp=0;
-  int temp2=0;
-  for(int i=0;i<strlen(word);i++){
-    temp=(int)word[i];
-    count[temp]++;
-    //printf("%d",temp);
-  }
-  // printf("%d\n",count[98]);
-  // printf("%d\n",count[88]);
-  char text1[strlen(text)];
-  strcpy(text1,text);
-  //printf("%s",&text1[1]);
-  //printf
-  for(int j=0; j<strlen(text); j++){
-       strncpy(text1,text+j,strlen(text));
-       printf("%s\n",&text1[0]);
-       for(int i=0; i<=strlen(text1); i++){
-           //setting up substr to be our temp substring for the current run
-           char substr[strlen(text)];
-           strncpy(substr,text1,i);
-           printf("%s\n",&substr[0]);
-           for(int i=0;i<strlen(text);i++){
-            if(substr[i]!=' '){
-              temp2=(int)substr[i];
-              printf("%d\n",temp2);
-              c2[temp2]++;
-              //printf("f");
-             }
-            //if(comp(count,c2))
-            //   printf("%s",substr);
-          }
-        }
-      }
-    }
-    //}
-  // printf("\nAnagram Sequences: ");
-  // qsort(word,sizeof(word)/sizeof(word[0]),sizeof(word[0]),cmpfunc);
-  // printf("%s",word);
-  // int countC=0;
-  // int countS=0;
-  // //char* p1=text;
-  // char* p2=text;
-  // //char sortedw[strlen(word)]={1,2,3};
-  // qsort(word,strlen(word),sizeof(char),cmpfunc);
-  // for(int i=0;i<strlen(text)-strlen(word);i++){
-  //   if(text[i]==' '){
-  //     countS++;
-  //     p2++;
-  //   }else{
-  //     countC++;
-  //     p2++;
-  //   }if(countC==strlen(word)){
-  //     qsort(text+i,strlen(word)+countS,sizeof(char),cmpfunc);
-  //     printf("%s",word);
-  //   }
-  // }
-int cmp(const void *a, const void *b) { return *(char *)a - *(char *)b; }
-
-int anagram1(char *text, char *word, int size){
-    printf("\nAnagram Sequences: ");
-    int a = 0, b = 0,count=0,flag=0;
-    int length = strlen(word);
-    for (int i =0;i<length;i++){
-        if (*(word + i)!=32)
-            count++;
-    }
-    int spaces = length - count;
-    char temp[length+1];
-    char wordNotSpace[length+1-spaces];
-    strcpy (temp, word);
-    qsort(temp, strlen(temp), 1, (cmp));
-    strcpy (wordNotSpace,temp+spaces);
-    int count2 = 0;
-    if (b==0 && *(text + b)!=32) {
-        count2++;
-    }
-    while(b<size){
-        if (*(text + a)==32){
-                a++;
-            continue;
-        }
-        if(count2 < count){
-            b++;
-            if (b<size && *(text + b)!=32){
-                count2++;
-            }
-            continue;
-            }
-        if(count2 > count){
-            if (*(word + a)!=32){
-                count2--;
-            }
-            a++;
-            continue;
-        }
-        if (count == count2){
-            int len = b - a + 1;
-            char *dest = (char*)malloc(sizeof(char) * (len+1));
-            for (int i = a; i <= b && (*(text + i) != '\0'); i++){
-                *dest = *(text + i);
-                dest++;
-            }
-            *dest = '\0';
-            int spaces2 = len-count2;
-            char temp2[len+1];
-            char wordNotSpace2[len+1-spaces2];
-            strcpy (temp2, dest-len);
-            qsort(temp2, strlen(temp2), 1, (cmp));
-            strcpy (wordNotSpace2,temp2+spaces2);
-
-            if (strcmp(wordNotSpace, wordNotSpace2) == 0){
-                if (flag == 1){
-                    printf("~%s",dest-len);
-                }
-                else{
-                    printf("%s",dest-len);
-                    flag = 1;
-                }
-            }
-            count2--;
-            a++;
-        }
-    }return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 char *strrev(char *str)
 {
       char *p1, *p2;
@@ -399,6 +109,7 @@ int ismin(char* word){
         }
         return 1;
 }
+
 int wordvalue (char* word){
     int i;
     int answer =0;
@@ -432,28 +143,7 @@ int wordvalue (char* word){
         }
         return answer;
 }
-// int cgem(char c){
-//     //your function
-//     int val =0;
-//     if((int)c<123&&(int)c>96){
-//         val =c-96;
-//     }
-//     if((int)c<91&&(int)c>64){
-//         val =c-64;
-//     }
-//     return val;
-// }
-// char catbs(char c){
-//     //your function
-//     if((int)c<123&&(int)c>96){
-//         c+=27-(2*cgem(c));
-//     }
-//     if((int)c<91&&c>64){
-//         c+=27-(2*cgem(c));
-//     }
-//
-//     return c;
-// }
+
 int ismatch(char* word,char* strsub){
     //if word is larger then strsub we already faile
     if(strlen(word)>strlen(strsub)){
@@ -475,54 +165,11 @@ int ismatch(char* word,char* strsub){
         //we run over the entire word and strsub they match we retrun true
     return 1;
     }
-   /*
-int ismatch1(char* word,char* strsub){
-    int k =0;
-    if(strlen(word)>strlen(strsub)){
-        return 0;
-    }
-        for(int i =0; i<strlen(strsub); i++){
-            if(strsub[i]==' '){
-                continue;
-            }
-            if(word[k]!=catbs(strsub[i])){
-                return 0;
-            }
-            k++;
-        }
-        return 1;
-    }
-    */
 
-int func1(char* text,char* word){
-    //we set up num to be our string value goal text1 gonna contain copy of text for us to change to go over
-    //every possible string
-    int num =wordvalue(word);
-    char* text1 =malloc(256);
-    int first =1;
-    //we use 2 fors to run on every possible substring of text
-    for(int j=0; j<strlen(text); j++){
-        text1=strncpy(text1,text+j,strlen(text));
-        for(int i=0; i<=strlen(text1); i++){
-            //setting up substr to be our temp substring for the current run
-            char* substr = malloc(256);
-            strncpy(substr,text1,i);
-            //if wordvalue of substring equal to num we found a string that answer all the requirment and we can print him
-            if(num==wordvalue(substr)){
-                if (first){
-                    first=0;
-                    printf("%s",substr);
-                }
-                else{
-                    printf("%s","~");
-                    printf("%s",substr);
-                }
-            }
-    }
-    }
-    return 0;
-}
-int func2(char* text,char* word){
+
+
+
+void Atbash(char* text,char* word){
     printf("\nAtbash Sequences: ");
     //building up our text1 that gonna help us run on every substring
     char* text1 =malloc(256);
@@ -566,5 +213,68 @@ int func2(char* text,char* word){
             }
             }
             }
-    }return 0;
+    }
   }
+
+int cmp(const void *a, const void *b) { return *(char *)a - *(char *)b; }
+
+void Anagram(char *text, char *word, int size){
+    printf("\nAnagram Sequences: ");
+    int a = 0, b = 0;
+    int countChars=0;
+    int first=0;
+    qsort(word, strlen(word), 1, (cmp));
+    if (b == 0 && *(text + b) != ' ' && *(text + b) != '\n' && *(text + b) != '\t') {
+        countChars++;
+    }
+    while (b < size) {
+        if (*(text + a) == ' ' || *(text + a) == '\n' || *(text + a) == '\t') {
+            a++;
+            continue;
+        }
+        if (countChars < strlen(word)) {
+            b++;
+            if (b < size && *(text + b) != ' ' && *(text + b) != '\n' && *(text + b) != '\t') {
+                countChars++;
+            }
+            continue;
+        }
+        if (countChars > strlen(word)) {
+            if (*(text + a) != ' ' && *(text + a) != '\n' && *(text + a) != '\t' ) {
+                countChars--;
+            }
+            a++;
+            continue;
+        }
+        if (countChars == strlen(word)) {
+            int len = b - a + 1;
+            char *dest = (char *) malloc(sizeof(char) * (len + 1));
+            char* toFree = dest;
+            if (dest != NULL){
+                for (int i = a; i <= b && (*(text + i) != '\0'); i++) {
+                    *dest = *(text + i);
+                    dest++;
+                }
+                *dest = '\0';
+                int spaces = len - countChars;
+                char temp[len + 1];
+                char substrNotSpace[len + 1 - spaces];
+                strcpy(temp, dest - len);
+                qsort(temp, strlen(temp), 1, cmp);
+                strcpy(substrNotSpace, temp + spaces);
+
+                if (strcmp(word, substrNotSpace) == 0) {
+                    if (first == 1) {
+                        printf("~%s", dest - len);
+                    } else {
+                        printf("%s", dest - len);
+                        first = 1;
+                    }
+                }
+                countChars--;
+                a++;
+            }
+            free(toFree);
+        }
+    }
+}
